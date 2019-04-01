@@ -6,6 +6,8 @@ package com.Engine.Display;
 import java.awt.Canvas;
 
 import com.Engine.Application.Application;
+import com.Engine.Application.Input.KeyInput;
+import com.Engine.Application.Input.MouseInput;
 
 /**
  * @author Boris Mulder
@@ -139,9 +141,15 @@ public class GameCanvas
 	 */
 	public Canvas GetGameCanvas()
 	{
-		Canvas.addMouseMotionListener(((Application)GameApplication).GetMouseInput());
-		Canvas.addMouseListener(((Application)GameApplication).GetMouseInput());
-		Canvas.addKeyListener(((Application)GameApplication).GetKeyBoard());
+		MouseInput mouse = new MouseInput();
+		KeyInput keyboard = new KeyInput();
+		
+		mouse.SetApplication(GameApplication);
+		keyboard.SetApplication(GameApplication);
+		
+		Canvas.addMouseMotionListener(mouse);
+		Canvas.addMouseListener(mouse);
+		Canvas.addKeyListener(keyboard);
 		return Canvas;
 	}
 }

@@ -33,6 +33,9 @@ public abstract class GameApplication implements Application
 	private final RenderBatch Batch = new RenderBatch(Camera,Resource);
 	protected float Delta;
 	
+	//Keyboard inof
+	private boolean DownKeys[] = new boolean[256];
+	private boolean UpKeys[] = new boolean[256];
 	
 	//Info
 	int FPS;
@@ -139,10 +142,39 @@ public abstract class GameApplication implements Application
 	
 	public abstract void mouseReleased(ApplicationEvent button, int x,int y);
 	
-	public abstract void keyboardEvent(ApplicationEvent event,int key_code);
-
 	protected abstract void UpdateGame();
 
 	protected abstract void RenderGame(RenderBatch batch);
+	
+	public boolean isKeyDown(int key_code)
+	{
+		return DownKeys[key_code] && !UpKeys[key_code];
+	}
+	
+	public boolean isKeyUp(int key_code)
+	{
+		return UpKeys[key_code] && !DownKeys[key_code];
+	}
+	
+	public void keyboardEvent(ApplicationEvent event,int key_code) {
+		switch(event)
+		{
+			case KEYPRESSED:
+				DownKeys[key_code] = true;
+				UpKeys[key_code] = false;
+				break;
+				
+			case KEYRELEASED:
+				UpKeys[key_code] = true;
+				DownKeys[key_code] = false;
+				break;
+				
+			default:
+				// Please don't let this happen..... java 
+				DownKeys[key_code] = false;
+				UpKeys[key_code] = false;
+				break;
+		}
+	}
 
 }

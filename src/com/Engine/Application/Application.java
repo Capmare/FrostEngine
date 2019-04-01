@@ -5,8 +5,6 @@ package com.Engine.Application;
 
 import java.awt.Canvas;
 
-import com.Engine.Application.Input.KeyInput;
-import com.Engine.Application.Input.MouseInput;
 import com.Engine.Display.Graphics.ResourceManager;
 
 
@@ -31,12 +29,6 @@ public interface Application
 		MOUSE_RIGHT, // Input
 	}
 	
-	//Mouse
-	static MouseInput MouseInput = new MouseInput();
-	
-	//Keyboard
-	static KeyInput KeyBoardInput = new KeyInput();
-	
 	//Load assets
 	void LoadResources(ResourceManager manager);
 	
@@ -51,16 +43,4 @@ public interface Application
 	
 	//Render the game
 	void OnRender(Canvas gfx);
-	
-    default MouseInput GetMouseInput()
-	{
-    	MouseInput.SetApplication(this);
-		return MouseInput;
-	}
-    
-    default KeyInput GetKeyBoard()
-    {
-    	KeyBoardInput.SetApplication(this);
-    	return KeyBoardInput;
-    }
 }
