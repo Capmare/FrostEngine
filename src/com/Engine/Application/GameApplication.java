@@ -33,7 +33,7 @@ public abstract class GameApplication implements Application
 	private final RenderBatch Batch = new RenderBatch(Camera,Resource);
 	protected float Delta;
 	
-	//Keyboard inof
+	//Keyboard info
 	private boolean DownKeys[] = new boolean[256];
 	private boolean UpKeys[] = new boolean[256];
 	
