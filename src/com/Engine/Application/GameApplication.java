@@ -156,6 +156,11 @@ public abstract class GameApplication implements Application
 		return UpKeys[key_code] && !DownKeys[key_code];
 	}
 	
+	/***
+	 * Don't overide this, but if you do then good luck :D
+	 * @param event
+	 * @param key_code
+	 */
 	public void keyboardEvent(ApplicationEvent event,int key_code) {
 		switch(event)
 		{
